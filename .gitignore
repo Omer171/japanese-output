@@ -1,0 +1,11 @@
+# Python environment and caches
+.venv/
+__pycache__/
+.pytest_cache/
+
+# Logs
+*.jsonl
+
+# Local user data and recordings (never commit personal progress or audio)
+data/user.json
+recordings/
