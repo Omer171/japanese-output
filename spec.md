@@ -71,6 +71,9 @@ with XP, a streak and levels.
   - Fail: `box = 0`, `due = today + 1`.
   - A new card starts at box 0. Its first review is the self-check of the day it was introduced.
 - Reviews each day: due cards (`due <= today`), oldest due date first, at most 3.
+- Each of the day's points is graded (and earns grammar XP) only in the first session that
+  day. Later sessions the same day don't grade it again. Ticks for points that are not in
+  today's plan are ignored.
 
 ## R5 Session timing and recording
 
