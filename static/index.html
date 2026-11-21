@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>アウトプット · Japanese Output</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="hud">
+    <div class="brand">アウトプット</div>
+    <div class="stat" title="Streak: days in a row you spoke for the minimum">
+      <span class="flame" id="streak-icon">🔥</span><span id="streak">0</span><small>day streak</small>
+    </div>
+    <div class="stat level">
+      <span class="badge" id="level">Lv 1</span>
+      <div class="xpbar"><div id="xpfill"></div></div>
+      <small id="xptext">0 / 100 XP</small>
+    </div>
+    <div class="stat" title="Words in your list"><span>📖</span><span id="wordcount">0</span><small>words</small></div>
+    <button class="ghost" id="change-level" title="Change your Japanese level">JLPT: <span id="jlpt">-</span></button>
+  </header>
+
+  <main>
+    <!-- R1 onboarding -->
+    <section id="onboarding" class="card hidden">
+      <h1>What's your Japanese level?</h1>
+      <p>You start further up the topic tree if you already know some Japanese, so you won't begin from zero.</p>
+      <div id="level-buttons" class="level-grid"></div>
+    </section>
+
+    <div id="main" class="hidden">
+      <div class="grid">
+        <!-- R3 today's topic -->
+        <section class="card" id="today">
+          <div class="eyebrow"><span id="plan-kind" class="tag">Today</span> <span id="plan-date"></span></div>
+          <h2 id="plan-title"></h2>
+          <div id="source-wrap" class="hidden">
+            <label for="source">What are you retelling? (title or link)</label>
+            <input id="source" type="text" placeholder="e.g. NHK Easy article about cherry blossoms">
+          </div>
+          <ol id="prompts" class="steps"></ol>
+          <button id="next-step" class="ghost">Next prompt →</button>
+        </section>
+
+        <!-- R4 grammar -->
+        <section class="card" id="grammar-card">
+          <h3>Use these today</h3>
+          <ul id="grammar" class="grammar"></ul>
+        </section>
+      </div>
+
+      <!-- R5 recorder -->
+      <section class="card" id="recorder">
+        <div class="timer-row">
+          <div class="timer" id="timer">00:00</div>
+          <div class="goal" id="goal-text"></div>
+        </div>
+        <div class="track">
+          <div class="track-fill" id="track-fill"></div>
+          <div class="track-min" id="track-min" title="Minimum for the streak"></div>
+        </div>
+        <div class="track-labels"><span>0</span><span id="min-label"></span><span>60 min bonus cap</span></div>
+        <div class="controls">
+          <button id="rec-start" class="primary">● Start speaking</button>
+          <button id="rec-pause" class="hidden">❚❚ Pause</button>
+          <button id="rec-stop" class="hidden danger">■ Finish</button>
+        </div>
+        <p id="rec-error" class="error hidden"></p>
+      </section>
+
+      <!-- After a session: self-check (R4/R6) -->
+      <section class="card hidden" id="review">
+        <h3>Nice! Listen back and check off what you did</h3>
+        <audio id="playback" controls></audio>
+        <div id="check-wrap">
+          <p class="muted">Which grammar points did you actually use?</p>
+          <div id="grammar-checks" class="checks"></div>
+        </div>
+        <label for="words">New words you used or looked up (one per line, <code>word = meaning</code>)</label>
+        <textarea id="words" rows="4" placeholder="散歩 = walk&#10;懐かしい = nostalgic"></textarea>
+        <div class="controls">
+          <button id="submit" class="primary">Claim XP</button>
+          <button id="discard" class="ghost">Discard</button>
+        </div>
+      </section>
+
+      <!-- Result (R6) -->
+      <section class="card hidden reward" id="result"></section>
+
+      <!-- R2 tree -->
+      <section class="card" id="tree-card">
+        <div class="tree-head">
+          <h3>Topic tree</h3>
+          <span id="credits" class="tag"></span>
+        </div>
+        <div id="tree" class="tree"></div>
+      </section>
+
+      <!-- R5 listen back -->
+      <section class="card" id="history-card">
+        <h3>Past sessions</h3>
+        <ul id="history" class="history"></ul>
+      </section>
+    </div>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
