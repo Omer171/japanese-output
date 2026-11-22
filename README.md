@@ -27,17 +27,18 @@ Everything runs locally and offline: no account, API key or paid service. Your p
 
 Needs Python 3.9.
 
-```
-py -3.9 -m venv .venv
-.venv\Scripts\pip install -r requirements-dev.txt
-```
+In Git Bash, from a fresh clone:
 
-(macOS/Linux: `python3.9 -m venv .venv && .venv/bin/pip install -r requirements-dev.txt`)
+```bash
+python -m venv .venv
+source .venv/Scripts/activate        # on macOS/Linux: source .venv/bin/activate
+python -m pip install -r requirements-dev.txt
+```
 
 ## Run
 
-```
-.venv\Scripts\python app.py
+```bash
+python app.py
 ```
 
 Then open http://127.0.0.1:5000 and allow microphone access. Recording works in recent
@@ -45,9 +46,11 @@ Chrome, Edge and Firefox.
 
 ## Test
 
+```bash
+python -m pytest
 ```
-.venv\Scripts\python -m pytest
-```
+
+(Run these after the `source .venv/Scripts/activate` line from Setup.)
 
 The tests cover all the rule logic in `japanese_output/`. Each test name contains the
 requirement it checks (`test_r1_...` to `test_r6_...`). The exact rules are in `spec.md`.
